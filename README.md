@@ -34,7 +34,47 @@ export function f(a){
 ## 路由
 路由，其实就是指向的意思，当我点击页面上的home按钮时，页面中就要显示home的内容，如果点击页面上的about 按钮，页面中就要显示about 的内容。Home按钮  => home 内容， about按钮 => about 内容，也可以说是一种映射. 所以在页面上有两个部分，一个是点击部分，一个是点击之后，显示内容的部分。   
 路由中有三个基本的概念 route, routes, router。  
-　1， route，它是一条路由，由这个英文单词也可以看出来，它是单数， Home按钮  => home内容， 这是一条route,  about按钮 => about 内容， 这是另一条路由。  
- 2， routes 是一组路由，把上面的每一条路由组合起来，形成一个数组。[{home 按钮 =>home内容 }， { about按钮 => about 内容}]  
- 3， router 是一个机制，相当于一个管理者，它来管理路由。因为routes 只是定义了一组路由，它放在哪里是静止的，当真正来了请求，怎么办？ 就是当用户点击home 按钮的时候，怎么办？这时router 就起作用了，它到routes 中去查找，去找到对应的 home 内容，所以页面中就显示了 home 内容。  
- 
+1， route，它是一条路由，由这个英文单词也可以看出来，它是单数， Home按钮  => home内容， 这是一条route,  about按钮 => about 内容， 这是另一条路由。    
+2， routes 是一组路由，把上面的每一条路由组合起来，形成一个数组。[{home 按钮 =>home内容 }， { about按钮 => about 内容}]    
+3， router 是一个机制，相当于一个管理者，它来管理路由。因为routes 只是定义了一组路由，它放在哪里是静止的，当真正来了请求，怎么办？ 就是当用户点击home 按钮的时候，怎么办？这时router 就起作用了，它到routes 中去查找，去找到对应的 home 内容，所以页面中就显示了 home 内容。    
+## vue关于class和样式的使用
++ 1.对象语法：  
+  我们可以传给v-bind:class一个对象，以动态的切换class。注意：v-bind:class指令可以与普通的class特性共存:  
+`<div class="mySelf" v-bind:class="{'class-a':isA,'class-b':isB}"></div>
+data:{
+   isA:true,
+   isB:false
+}`
+此时渲染：  
+`<div class="mySelf class-a"></div>`  
+
+`<div class="mySelf" v-bind:class="classObject"></div>
+data:{
+    classObject:{
+      'class-a':true,
+      'class-b':false
+    }
+}`
++  2.数组语法：  
+`<div v-bind:class="[classA,classB]"></div>
+data: {
+ classA: 'class-a',
+ classB: 'class-b'
+}`
+渲染：  
+`<div v-bind:class="class-a class-b"></div>`
++ 3.绑定内联样式  
+`<div v-bind:style="{color:bgColor,fontSize:fontSize+ 'px'}"></div>
+data:{
+  bgColor:'white',
+  fontSize: 16
+}`
+渲染：  
+`<div v-bind:style="styleObject"></div>
+
+data:{
+  styleObject:{
+    color:'white',
+    fontSize:'16px'
+  }
+}`
