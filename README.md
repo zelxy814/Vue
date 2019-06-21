@@ -76,3 +76,25 @@ data:{
     fontSize:'16px'
   }
 }`
+## 引入 vue-router
++ `npm install vue-router --save`
++ `import Router from 'vue-router`
++ `Vue.use(Router)`
++ 在router文件夹index.js中配置路由，在 main.js 中使用路由。  
+## $route
++ `$route.path` 当前路由对象的路径，如 搜索页面 '/search',订单页面 '/order'
++ `$rotue.params` 关于动态片段（如 /user/:username )的键值对信息,如 {username: 'paolino'}
++ `$route.query` 请求参数，如 /foo?user=1 获取到 query.user = 1
++ `$route.hash` 当前路由的 hash 值 (带 #) ，如果没有 hash 值，则为空字符串
++ `$route.fullPath` 完成解析后的 URL，包含查询参数和 hash 的完整路径
++ `$route.matched` 一个数组，包含当前路由的所有嵌套路径片段的路由记录。路由记录就是 routes 配置数组中的对象副本 (还有在 children 数组)
++ `$route.name` 当前路由的名称
++ `$route.redirectedFrom` 如果存在重定向，即为重定向来源的路由的名字
+## $router
++ `this.$router.replace()`  描述：同样是跳转到指定的url，但是这个方法不会向history里面添加新的记录，点击返回，会跳转到上上一个页面。上一个记录是不存在的。  
++ `this.$router.go(n)`  相对于当前页面向前或向后跳转多少个页面,类似 window.history.go(n)。n可为正数可为负数。正数返回上一个页面  
+![image](./src/assets/01.png)  
++ `this.$router.push()` 跳转到不同的url，但这个方法回向history栈添加一个记录，点击后退会返回到上一个页面。  
+![image](./src/assets/02.png)    
+
+
