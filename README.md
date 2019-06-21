@@ -40,8 +40,8 @@ export function f(a){
 ## vue关于class和样式的使用
 + 1.对象语法：  
   我们可以传给v-bind:class一个对象，以动态的切换class。注意：v-bind:class指令可以与普通的class特性共存:    
-`<div class="mySelf" v-bind:class="{'class-a':isA,'class-b':isB}"></div>  
-data:{
+`<div class="mySelf" v-bind:class="{'class-a':isA,'class-b':isB}"></div>`  
+`data:{
    isA:true,
    isB:false
 }`    
@@ -55,19 +55,19 @@ data:{
     }
 }`  
 + 2.数组语法：  
-`<div v-bind:class="[classA,classB]"></div>  
-data: {
+`<div v-bind:class="[classA,classB]"></div>`  
+`data: {
  classA: 'class-a',
  classB: 'class-b'
-}`  
+}`    
 渲染：  
 `<div v-bind:class="class-a class-b"></div>`  
 + 3.绑定内联样式  
-`<div v-bind:style="{color:bgColor,fontSize:fontSize+ 'px'}"></div>  
-data:{
+`<div v-bind:style="{color:bgColor,fontSize:fontSize+ 'px'}"></div>`  
+`data:{
   bgColor:'white',
   fontSize: 16
-}`
+}`  
 渲染：    
 `<div v-bind:style="styleObject"></div>`  
 `data:{
