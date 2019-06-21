@@ -25,7 +25,32 @@ export function f(a){
 父组件通过v-bind传递参数msgname(属性名随便起)，值为value(根组件中的属性)，  
 在利用props实现传值的过程中理论上是要实现单向传递，即父组件改变相关参数的值，子组件也相应变化，但是子组件对参数的改变不应该影响父组件。  
 但是当props中接收的是父组件传递的引用类型（对象或者是数组）时，在子组件中对数据改变时，父组件中的数据也会相应的改变，因为两者是指向的同一地址内存。  
-如果不想子组件的改变影响父组件可以利用深拷贝。  
+如果不想子组件的改变影响父组件可以利用深拷贝。   
+props是子组件访问父组件数据的唯一接口,如果子组件想要引用父元素的数据，那么就在prop里面声明一个变量。  
+```
+ <div id="app1">
+        <!-- child组件引用父元素的hello数据，它也可以引用message,greet，world等，如果child是全局组件，其他组件也可以调用child组件，并传相应的值 -->
+        <child :hello='hello'></child>
+    </div>
+    <script>
+        var com1 = Vue.component('child',{
+            // 声明在prop中的变量可以引用父元素的数据
+            props:['hello'],
+           // 这里渲染props中声明的那个hello
+            template:'<div><p>{{ hello }}</p></div>',
+        })
+        var app1 = new Vue ({
+            el: '#app1',
+            data: {
+                greet: {
+                    hello:'hello,',
+                    world: 'world',
+                },
+                message: 'message1',
+            }
+        })
+    </script>
+```
 ***********************************************************
 ## 子组件向父组件传值：
 子组件通过this.$emit()派发事件，父组件利用v-on对事件进行监听。  
@@ -96,5 +121,4 @@ data:{
 ![image](https://github.com/zelxy814/Vue/blob/master/image/01.png)  
 + `this.$router.push()` 跳转到不同的url，但这个方法回向history栈添加一个记录，点击后退会返回到上一个页面。  
 ![image](https://github.com/zelxy814/Vue/blob/master/image/02.png)    
-
 
