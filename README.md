@@ -93,8 +93,8 @@ data:{
 ## $router
 + `this.$router.replace()`  描述：同样是跳转到指定的url，但是这个方法不会向history里面添加新的记录，点击返回，会跳转到上上一个页面。上一个记录是不存在的。  
 + `this.$router.go(n)`  相对于当前页面向前或向后跳转多少个页面,类似 window.history.go(n)。n可为正数可为负数。正数返回上一个页面  
-![image](./src/assets/01.png)  
+![image](./images/01.png)  
 + `this.$router.push()` 跳转到不同的url，但这个方法回向history栈添加一个记录，点击后退会返回到上一个页面。  
-![image](./src/assets/02.png)    
+![image](./images/02.png)    
 
 
