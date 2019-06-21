@@ -46,8 +46,7 @@ data:{
    isB:false
 }`  
 此时渲染：  
-`<div class="mySelf class-a"></div>`    
-
+`<div class="mySelf class-a"></div>`  
 `<div class="mySelf" v-bind:class="classObject"></div>
 data:{
     classObject:{
@@ -60,7 +59,7 @@ data:{
 data: {
  classA: 'class-a',
  classB: 'class-b'
-}`
+}`  
 渲染：  
 `<div v-bind:class="class-a class-b"></div>`
 + 3.绑定内联样式  
