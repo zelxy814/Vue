@@ -56,6 +56,59 @@ props是子组件访问父组件数据的唯一接口,如果子组件想要引�
 子组件通过this.$emit()派发事件，父组件利用v-on对事件进行监听。  
 当子组件触发事件中，有$emit时，就会向父组件中寻找changeCare的自定义事件，然后父组件触发这个事件的函数。  
  this.$emit('changeCart',event.target)向父组件派发事件，同时传递参数event.target,后面的参数的个数不限  
+ *********************************************************************************
+## 动态路由和get传值
+    ```
+    动态路由：
+     <!-- 因为要绑定我们的动态数据 所以要用 : 然后做拼接 -->
+      <router-link :to="'/content/'+k">{{k}}-{{x}}</router-link>
+     点击之后能够跳转到一个详情：可以新建一个详情的组件
+     
+      mounted(){
+      // 获取传递过来的动态路由的值
+      console.log(this.$route.params);
+      console.log(this.$route.params['aid']);
+      this.aid = this.$route.params['aid'];
+    }
+  
+  
+    // 1、创建组件
+    import Header from './components/Header.vue'
+    import Home from './components/Home.vue'
+    import News from './components/News.vue'
+    import Content from './components/Content.vue'
+
+    // 2、配置路由
+    const routes = [
+    { path: '/home', component: Home },
+    { path: '/news', component: News },
+    { path: '/content', component: Content },
+    { path: '/content/:aid', component: Content },
+    { path: '*', redirect:'/home'}, // 默认跳转路由
+    ]
+    ```
+    ```
+    get传值：
+    <!-- <router-link to="/content?aid=123">{{k}}-{{x}}</router-link> -->
+    <router-link :to="'/content?aid='+k">{{k}}-{{x}}</router-link>
+
+    // 2、配置路由
+    const routes = [
+    { path: '/home', component: Home },
+    { path: '/news', component: News },
+    { path: '/content', component: Content },
+    { path: '*', redirect:'/home'}, // 默认跳转路由
+    ]
+    
+    mounted(){
+    // 获取get传递过来的动态路由的值
+    console.log(this.$route.query);
+    console.log(this.$route.query['aid']);
+    this.aid = this.$route.query['aid'];
+    }
+
+    ```
+    
 ## 路由
 路由，其实就是指向的意思，当我点击页面上的home按钮时，页面中就要显示home的内容，如果点击页面上的about 按钮，页面中就要显示about 的内容。Home按钮  => home 内容， about按钮 => about 内容，也可以说是一种映射. 所以在页面上有两个部分，一个是点击部分，一个是点击之后，显示内容的部分。   
 路由中有三个基本的概念 route, routes, router。  
