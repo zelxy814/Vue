@@ -183,7 +183,41 @@ data:{
 + `this.$router.go(n)`  相对于当前页面向前或向后跳转多少个页面,类似 window.history.go(n)。n可为正数可为负数。正数返回上一个页面  
 ![image](https://github.com/zelxy814/Vue/blob/master/image/01.png)  
 + `this.$router.push()` 跳转到不同的url，但这个方法回向history栈添加一个记录，点击后退会返回到上一个页面。  
-![image](https://github.com/zelxy814/Vue/blob/master/image/02.png)    
+![image](https://github.com/zelxy814/Vue/blob/master/image/02.png)  
+## vue-resource与axios使用
+- vue本身不支持发送ajax请求，需要axios、vue-resource等插件实现
+- 安装 `npm install vue-resource --save`
+- 在main.js引入和使用 `import VueResource from 'vue-resource';Vue.use(VueResource);`
+- 引入vue-resource后，可以基于全局的Vue对象使用http，也可以基于某个Vue实例使用http.
+```
+    // 基于全局Vue对象使用http
+    Vue.http.get('/someUrl', [options]).then(successCallback, errorCallback);
+    Vue.http.post('/someUrl', [body], [options]).then(successCallback, errorCallback);
+
+    // 在一个Vue实例内使用$http
+    this.$http.get('/someUrl', [options]).then(successCallback, errorCallback);
+    this.$http.post('/someUrl', [body], [options]).then(successCallback, errorCallback);
+```
+- 安装 `npm install axois --save`
+- 在main.js引入 `import axios from 'axios';`
+```
+    // 向具有指定ID的用户发出请求
+    axios.get('/user?ID=12345')
+    // 也可以通过 params 对象传递参数
+    axios.get('/user', {
+        params: {
+        ID: 12345
+        }
+    })
+    // post请求
+    axios.post('/user', {
+        firstName: 'Fred',
+        lastName: 'Flintstone'
+        })
+
+    
+
+```
 ## vuex 与 localstorage、sessionstorage
 - 1. 点（.）运算符           sessionStorage.lastname = 'JSAnntQ';    localStorage.lastname = 'JSAnntQ'; 
 - 2. 方括号（[ ]）运算符     sessionStorage['lastname'] = 'JSAnntQ';   localStorage['lastname'] = 'JSAnntQ';
