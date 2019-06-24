@@ -58,7 +58,7 @@ props是子组件访问父组件数据的唯一接口,如果子组件想要引�
  this.$emit('changeCart',event.target)向父组件派发事件，同时传递参数event.target,后面的参数的个数不限  
  *********************************************************************************
 ## 动态路由和get传值
-    ```
+   ```
     动态路由：
      <!-- 因为要绑定我们的动态数据 所以要用 : 然后做拼接 -->
       <router-link :to="'/content/'+k">{{k}}-{{x}}</router-link>
@@ -86,8 +86,8 @@ props是子组件访问父组件数据的唯一接口,如果子组件想要引�
     { path: '/content/:aid', component: Content },
     { path: '*', redirect:'/home'}, // 默认跳转路由
     ]
-    ```
-    ```
+  ```
+  ```
     get传值：
     <!-- <router-link to="/content?aid=123">{{k}}-{{x}}</router-link> -->
     <router-link :to="'/content?aid='+k">{{k}}-{{x}}</router-link>
@@ -107,7 +107,7 @@ props是子组件访问父组件数据的唯一接口,如果子组件想要引�
     this.aid = this.$route.query['aid'];
     }
 
-    ```
+  ```
     
 ## 路由
 路由，其实就是指向的意思，当我点击页面上的home按钮时，页面中就要显示home的内容，如果点击页面上的about 按钮，页面中就要显示about 的内容。Home按钮  => home 内容， about按钮 => about 内容，也可以说是一种映射. 所以在页面上有两个部分，一个是点击部分，一个是点击之后，显示内容的部分。   
@@ -184,4 +184,8 @@ data:{
 ![image](https://github.com/zelxy814/Vue/blob/master/image/01.png)  
 + `this.$router.push()` 跳转到不同的url，但这个方法回向history栈添加一个记录，点击后退会返回到上一个页面。  
 ![image](https://github.com/zelxy814/Vue/blob/master/image/02.png)    
+## vuex 与 localstorage、sessionstorage
+- 1. 点（.）运算符           sessionStorage.lastname = 'JSAnntQ';    localStorage.lastname = 'JSAnntQ'; 
+- 2. 方括号（[ ]）运算符     sessionStorage['lastname'] = 'JSAnntQ';   localStorage['lastname'] = 'JSAnntQ';
+- 3. 　sessionStorage.setItem("lastname", "JSAnntQ");　  localStorage.setItem("lastname", "JSAnntQ");　 localStorage.getItem("lastname");
 
