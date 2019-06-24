@@ -188,4 +188,65 @@ data:{
 - 1. 点（.）运算符           sessionStorage.lastname = 'JSAnntQ';    localStorage.lastname = 'JSAnntQ'; 
 - 2. 方括号（[ ]）运算符     sessionStorage['lastname'] = 'JSAnntQ';   localStorage['lastname'] = 'JSAnntQ';
 - 3. 　sessionStorage.setItem("lastname", "JSAnntQ");　  localStorage.setItem("lastname", "JSAnntQ");　 localStorage.getItem("lastname");
+- Vuex能实现的功能localstorage和sessionstorage都能实现。在大项目中使用Vuex。
+- 将数据存储在vuex中，切换路由时不用每次都获取。
+```
+Vuex是一个专为 Vue.js应用程序开发的状态管理模式
+1.Vuex解决组件之间同一状态的数据共享问题
+2.组件里的数据持久化
+Vuex的使用：
+    1.src目录下面新建一个vuex的文件夹
+    2.vuex文件夹里面新建一个store.js
+    3.安装vuex  `npm install vuex --save`
+    4.引入vuex，使用vuex  import vuex from 'vuex'   Vue.use(vuex)
+    5.定义数据 state
+    6.定义方法 mutations
+    7.暴露Vuex.store实例
+ 在其他组件中使用：
+     1.引入store.js，注册组件。
+     2.this.$store.state.count使用数据
+     3.this.$store.commit('incCount') 触发mutations里的方法改变数据
+     4.this.$dispatch('incCount') 触发action里的方法
+        
+state：在vuex中用于存储数据
+mutation:里面放的是方法，主要用于改变state里面的数据
+getter:改变数据时触发。this.$store.getters.computedCount
+action:类似于mutation，提交的是mutation，而不是直接变更状态，action可以包含任意异步操作。
+*********************
+store.js
+import Vue from "vue"
+import Vuex from "vuex"
+Vue.use(Vuex)
+var state = {
+    count:1
+}
+var mutations = {
+    incCount(state){
+        ++state.count;
+    }
+}
+// 有点类似于计算属性，改变state里面的count数据时会触发getters里面的方法，获取新的值
+var getters={
+   computedCount:(state)=>{
+        return state.count*2
+    }
+}
+//在action里可以执行一些异步操作
+var actions = {
+    incMutationsCount:(context){
+        context.commit('incCount');//执行mutations里面的方法，改变count。
+    }
+}
+//实例化 Vuex.store
+const store = new Vuex.store({
+    state,
+    mutations,
+    getters,
+    actions
+    
+});
+export default store;
+*********************
+
+```
 
